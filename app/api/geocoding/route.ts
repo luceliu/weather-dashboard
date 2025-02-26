@@ -5,6 +5,7 @@ export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
     const city = searchParams.get("city");
+    console.log(city);
 
     if (!city) {
       return NextResponse.json(
@@ -14,6 +15,7 @@ export async function GET(req: NextRequest) {
     }
 
     const citiesData = await fetchCitiesData(city);
+    console.log(citiesData);
     return NextResponse.json(citiesData);
   } catch (error) {
     console.error("Geocoding Error:", error);

@@ -1,3 +1,5 @@
+import { OpenWeatherMapCitySearchResponse } from "../types/geocoding";
+
 export async function fetchCitiesData(city: string) {
   const apiKey = process.env.OPEN_WEATHER_MAP_API_KEY;
 
@@ -16,4 +18,7 @@ export async function fetchCitiesData(city: string) {
   if (!res.ok) {
     throw new Error(`Geocoding API error: ${res.statusText}`);
   }
+  const data: OpenWeatherMapCitySearchResponse = await res.json();
+
+  return data;
 }
