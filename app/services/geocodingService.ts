@@ -1,6 +1,11 @@
-import { OpenWeatherMapCitySearchResponse } from "../types/geocoding";
+import {
+  CitySearchResponse,
+  OpenWeatherMapCitySearchResponse,
+} from "../types/geocoding";
 
-export async function fetchCitiesData(city: string) {
+export async function fetchCitiesData(
+  city: string
+): Promise<CitySearchResponse> {
   const apiKey = process.env.OPEN_WEATHER_MAP_API_KEY;
 
   if (!apiKey) {
@@ -20,5 +25,11 @@ export async function fetchCitiesData(city: string) {
   }
   const data: OpenWeatherMapCitySearchResponse = await res.json();
 
-  return data;
+  const citySearchResults = data.map((city) => {
+    const { local_names, ...newCityData } = city; // get rid of local_names key as we don't need it
+
+    return newCityData;
+  });
+
+  return citySearchResults;
 }
