@@ -80,8 +80,8 @@ export interface WeatherForecastResponse {
 }
 
 export interface SingleDayWeather {
-  timestamp: number;
+  dt: number;
   temp: number;
   description: string;
-  iconUrl: string;
+  iconId: string;
 }
