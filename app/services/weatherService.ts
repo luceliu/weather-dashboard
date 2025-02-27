@@ -46,7 +46,7 @@ const transformOpenWeatherMapData = (
   return {
     currentWeather,
     dailyWeather,
-    timezoneOffset: data.timezone_offset,
+    timezoneOffset: data.timezone_offset, // this will be useful for showing the forecast relative to that city's local time
   };
 };
 

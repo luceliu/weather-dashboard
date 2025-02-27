@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    // get search params
     const searchParams = req.nextUrl.searchParams;
     const lat = searchParams.get("lat");
     const lon = searchParams.get("lon");
@@ -15,7 +14,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // call service method to get weather data
     const weatherData = await fetchWeatherData(lat, lon);
     return NextResponse.json(weatherData);
   } catch (error) {

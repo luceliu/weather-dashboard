@@ -1,4 +1,3 @@
-// hooks/useWeatherDashboard.ts
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { debounce } from "lodash";
 
@@ -31,7 +30,6 @@ export function useWeatherDashboard() {
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchResults([]);
 
     if (!isValidSearch(searchQuery)) {
       setIsLoading(false);
@@ -39,9 +37,7 @@ export function useWeatherDashboard() {
     }
 
     debouncedFetchCities.cancel();
-    setSelectedCity(null);
-    setWeatherForecast(null);
-    setIsLoading(true);
+    resetCitySearch();
     performSearch(searchQuery);
   };
 
@@ -63,7 +59,8 @@ export function useWeatherDashboard() {
       setIsLoading(false);
     }
   };
-  // debounce 300ms for handling user input
+
+  // debounce 300ms to not fire too many times, if user types quickly
   const debouncedFetchCities = useCallback(
     debounce(async (searchTerm: string) => {
       if (!isValidSearch(searchTerm)) {
@@ -79,11 +76,13 @@ export function useWeatherDashboard() {
   const handleCityAutoSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchQuery(value);
-    setSelectedCity(null);
-    setWeatherForecast(null);
-    setSearchResults([]);
-    setIsLoading(true);
     debouncedFetchCities(value);
+  };
+
+  const resetCitySearch = () => {
+    setSearchResults([]);
+    setSelectedCity(null);
+    setIsLoading(true);
   };
 
   const handleCitySelect = async (city: CitySearchResult) => {
