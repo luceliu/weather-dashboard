@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SingleDayWeather } from "../types/internal/weather";
+import { formatToTempInCelsius } from "../utils/formatters";
 
 interface ICurrentWeatherProps {
   currentWeather: SingleDayWeather;
@@ -15,7 +16,7 @@ const CurrentWeather: React.FunctionComponent<ICurrentWeatherProps> = ({
           <div className="">
             <p className="text-2xl">Today</p>
             <h3 className="text-6xl font-bold my-2">
-              {Math.round(currentWeather.temp)} °C
+              {formatToTempInCelsius(currentWeather.temp)}
             </h3>
             <p className="text-xl">{currentWeather.description}</p>
           </div>

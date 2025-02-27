@@ -16,3 +16,7 @@ export const formatUnixTimeToDayOfWeek = (
 
   return format(date, "E");
 };
+
+export const formatToTempInCelsius = (temp: number) => {
+  return `${Math.round(temp)} °C`;
+};

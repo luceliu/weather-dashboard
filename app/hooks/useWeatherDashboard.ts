@@ -21,6 +21,7 @@ export function useWeatherDashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [showToast, setShowToast] = useState<boolean>(false);
+  const [visibleDaysCount] = useState<number>(3);
 
   const closeToast = () => {
     setShowToast(false);
@@ -107,6 +108,7 @@ export function useWeatherDashboard() {
     searchResults,
     selectedCity,
     weatherForecast,
+    visibleDaysCount,
     isLoading,
     error,
     showToast,

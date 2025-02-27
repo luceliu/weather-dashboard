@@ -24,6 +24,7 @@ const WeatherDashboard: React.FC = () => {
     searchResults,
     selectedCity,
     weatherForecast,
+    visibleDaysCount,
     isLoading,
     error,
     showToast,
@@ -63,7 +64,12 @@ const WeatherDashboard: React.FC = () => {
               <CurrentWeather currentWeather={weatherForecast.currentWeather} />
 
               <Forecast
-                forecast={weatherForecast.dailyWeather}
+                forecast={weatherForecast.dailyWeather.slice(
+                  0,
+                  visibleDaysCount
+                )} // limit the results initially
+                // TODO: add SEE MORE button to Forecast
+                visibleDaysCount={visibleDaysCount}
                 timezoneOffset={weatherForecast.timezoneOffset}
               />
             </div>
