@@ -41,11 +41,12 @@ const transformOpenWeatherMapData = (
   data: OpenWeatherMapResponse
 ): WeatherForecastResponse => {
   const currentWeather = transformCurrentOrDailyWeather(data.current);
-  const dailyWeather = data.daily.map(transformCurrentOrDailyWeather);
+  const dailyWeather = data.daily.map(transformCurrentOrDailyWeather).slice(1); // get rid of first day, as it's the same as Today/Current
 
   return {
     currentWeather,
     dailyWeather,
+    timezoneOffset: data.timezone_offset,
   };
 };
 

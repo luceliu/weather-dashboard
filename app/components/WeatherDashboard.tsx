@@ -62,7 +62,10 @@ const WeatherDashboard: React.FC = () => {
 
               <CurrentWeather currentWeather={weatherForecast.currentWeather} />
 
-              <Forecast forecast={weatherForecast.dailyWeather} />
+              <Forecast
+                forecast={weatherForecast.dailyWeather}
+                timezoneOffset={weatherForecast.timezoneOffset}
+              />
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-64 ">

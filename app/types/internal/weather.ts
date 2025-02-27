@@ -1,6 +1,7 @@
 export interface WeatherForecastResponse {
   currentWeather: SingleDayWeather;
   dailyWeather: SingleDayWeather[];
+  timezoneOffset: number;
 }
 
 export interface SingleDayWeather {

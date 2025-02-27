@@ -4,9 +4,13 @@ import { SingleDayWeather } from "../types/internal/weather";
 
 interface IForecastProps {
   forecast: SingleDayWeather[];
+  timezoneOffset: number;
 }
 
-const Forecast: React.FunctionComponent<IForecastProps> = ({ forecast }) => {
+const Forecast: React.FunctionComponent<IForecastProps> = ({
+  forecast,
+  timezoneOffset,
+}) => {
   return (
     <div>
       <h3 className="text-2xl font-semibold mb-6">5-Day Forecast</h3>
@@ -17,7 +21,7 @@ const Forecast: React.FunctionComponent<IForecastProps> = ({ forecast }) => {
             className="bg-blue-50 rounded-lg p-4 text-center flex flex-col items-center"
           >
             <p className="font-semibold text-xl">
-              {formatUnixTimeToDayOfWeek(day.dt)}
+              {formatUnixTimeToDayOfWeek(day.dt, timezoneOffset)}
             </p>
             <div className="flex w-fit items-center justify-center bg-white bg-opacity-100 p-3 m-3 rounded-full">
               <Image
