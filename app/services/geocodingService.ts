@@ -1,7 +1,5 @@
-import {
-  CitySearchResponse,
-  OpenWeatherMapCitySearchResponse,
-} from "../types/geocoding";
+import { OpenWeatherMapCitySearchResponse } from "../types/external/openWeatherMapGeocoding";
+import { CitySearchResponse } from "../types/internal/geocoding";
 
 export async function fetchCitiesData(
   city: string

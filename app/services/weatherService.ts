@@ -2,9 +2,11 @@ import {
   OpenWeatherMapCurrentWeather,
   OpenWeatherMapDailyWeather,
   OpenWeatherMapResponse,
+} from "../types/external/openWeatherMapWeather";
+import {
   SingleDayWeather,
   WeatherForecastResponse,
-} from "../types/weather";
+} from "../types/internal/weather";
 
 export async function fetchWeatherData(
   lat: string,
@@ -30,7 +32,6 @@ export async function fetchWeatherData(
 
   const data: OpenWeatherMapResponse = await res.json();
 
-  // remove all the unneeded keys from the external API response
   const transformedData = transformOpenWeatherMapData(data);
 
   return transformedData;
@@ -54,7 +55,7 @@ const transformCurrentOrDailyWeather = (
   const temperature =
     typeof singleDayData.temp === "number"
       ? singleDayData.temp // OpenWeatherMapCurrentWeather
-      : singleDayData.temp.day; // OpenWeatherMapDailyWeather
+      : singleDayData.temp.day; // OpenWeatherMapDailyWeather - for simplicity's sake, just using `day`
 
   return {
     dt: singleDayData.dt,

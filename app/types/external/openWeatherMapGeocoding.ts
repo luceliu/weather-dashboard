@@ -10,8 +10,3 @@ export interface OpenWeatherMapCitySearchResult {
 }
 
 export type OpenWeatherMapCitySearchResponse = OpenWeatherMapCitySearchResult[];
-
-export interface CitySearchResult
-  extends Omit<OpenWeatherMapCitySearchResult, "local_names"> {}
-
-export type CitySearchResponse = CitySearchResult[];
