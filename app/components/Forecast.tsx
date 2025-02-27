@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   formatToTempInCelsius,
   formatUnixTimeToDayOfWeek,
+  formatWeatherIconUrl,
 } from "../utils/formatters";
 import { SingleDayWeather } from "../types/internal/weather";
 
@@ -41,7 +42,7 @@ const ForecastDay: React.FC<{
       </p>
       <div className="flex w-fit items-center justify-center bg-white bg-opacity-100 p-3 m-3 rounded-full">
         <Image
-          src={`https://openweathermap.org/img/wn/${day.iconId}@2x.png`}
+          src={formatWeatherIconUrl(day.iconId)}
           alt="weather conditions"
           width={75}
           height={75}

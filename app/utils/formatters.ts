@@ -1,4 +1,5 @@
 import { format, fromUnixTime, addSeconds } from "date-fns";
+import { WEATHER_ICON_BASE_URL } from "../constants/api";
 
 export const formatUnixTimeToDayOfWeek = (
   unixTime: number,
@@ -19,4 +20,8 @@ export const formatUnixTimeToDayOfWeek = (
 
 export const formatToTempInCelsius = (temp: number) => {
   return `${Math.round(temp)} °C`;
+};
+
+export const formatWeatherIconUrl = (iconId: string): string => {
+  return `${WEATHER_ICON_BASE_URL}${iconId}@2x.png`;
 };

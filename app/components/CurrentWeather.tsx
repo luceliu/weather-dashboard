@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { SingleDayWeather } from "../types/internal/weather";
-import { formatToTempInCelsius } from "../utils/formatters";
+import {
+  formatToTempInCelsius,
+  formatWeatherIconUrl,
+} from "../utils/formatters";
 
 interface ICurrentWeatherProps {
   currentWeather: SingleDayWeather;
@@ -23,7 +26,7 @@ const CurrentWeather: React.FunctionComponent<ICurrentWeatherProps> = ({
         </div>
         <div className="flex items-center justify-center bg-white bg-opacity-20 p-3 rounded-full">
           <Image
-            src={`https://openweathermap.org/img/wn/${currentWeather.iconId}@2x.png`}
+            src={formatWeatherIconUrl(currentWeather.iconId)}
             alt="current conditions"
             width={100}
             height={100}
